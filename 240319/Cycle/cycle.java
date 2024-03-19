@@ -8,21 +8,24 @@ public class Main {
         int[] inputs = Arrays.stream(br.readLine().split(" "))
                             .mapToInt(Integer::parseInt)
                             .toArray();
-        int N = inputs[0];
-        int P = inputs[1];
+        final int N = inputs[0];
+        final int P = inputs[1];
 
         int cycleCount = 0;
         int cur = N;
         
-        Set<Integer> lookup = new HashSet<Integer>();
+        List<Integer> lookupArray = new ArrayList();
+        Set<Integer> lookupSet = new HashSet();
         while(true) {
             cur *= N;
             cur %= P;
-            if (lookup.contains(cur)) break;
-            lookup.add(cur);
+            
+            if (lookupSet.contains(cur)) break;
+            lookupSet.add(cur);
+            lookupArray.add(cur);
             cycleCount++;
         }
-        System.out.println(cycleCount);
+        System.out.println(cycleCount - (lookupArray.indexOf(cur) + 1) + 1);
 
     }
 }
