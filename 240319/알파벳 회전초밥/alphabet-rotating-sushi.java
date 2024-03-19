@@ -3,30 +3,34 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        // 여기에 코드를 작성해주세요.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         final String A = br.readLine();
         final String B = br.readLine();
+        Map<Character, Integer> lookup = new HashMap<>();
 
-        Set<Character> lookup = new HashSet<>();
-        int start = 0;
-        int result = 0;
-
-        for (int i = 0; i < B.length(); ++i) {
-            lookup.add(B.charAt(i));
+        for(int i = 0; i < A.length(); ++i) {
+            lookup.put(A.charAt(i), i);   
         }
-        
-        for (int i = 0; i < A.length(); ++i) {
-            if (!lookup.contains(A.charAt(i))) continue;
 
-            if (A.charAt(i) == B.charAt(start)) {
-                start++;
+    
+        int top = -1;
+        int[] stack = new int[1001];
+        int result = 0;
+        for (int i = 0; i < B.length(); ++i) {
+            if (top == -1) {
+                stack[++top] = lookup.get(B.charAt(i));
                 result++;
             } else {
-                result++;
+                int cmpIndex = stack[top];
+                int currentCharIndex = lookup.get(B.charAt(i));
+
+                if (currentCharIndex <= cmpIndex) {
+                    result++;
+                }
+                stack[++top] = currentCharIndex;
             }
-            lookup.add(A.charAt(i));
         }
+    
         System.out.println(result);
     }
 }
