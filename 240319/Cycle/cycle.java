@@ -13,15 +13,13 @@ public class Main {
 
         int cycleCount = 0;
         int cur = N;
-
-        cur *= N;
-        cur %= P;
-        cycleCount++;
-        int first = cur;
+        
+        Set<Integer> lookup = new HashSet<Integer>();
         while(true) {
             cur *= N;
             cur %= P;
-            if (cur == first) break;
+            if (lookup.contains(cur)) break;
+            lookup.add(cur);
             cycleCount++;
         }
         System.out.println(cycleCount);
