@@ -22,10 +22,11 @@ public class Main {
         }
 
         int result = 0;
-        for (int i = 0; i < 91; ++i) {
-            for (int j = 0; j < 91; ++j) {
-                if (area[i][j] != 0) result++;
+        for (int i = 0; i < 101; ++i) {
+            for (int j = 0; j < 101; ++j) {
+                if (area[i][j] != 0) result++;    
             }
+            
         }
 
         System.out.println(result);
