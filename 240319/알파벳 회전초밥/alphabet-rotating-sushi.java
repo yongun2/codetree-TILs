@@ -10,7 +10,7 @@ public class Main {
 
         Set<Character> lookup = new HashSet<>();
         int start = 0;
-        int result = 1;
+        int result = 0;
 
         for (int i = 0; i < B.length(); ++i) {
             lookup.add(B.charAt(i));
@@ -21,6 +21,7 @@ public class Main {
 
             if (A.charAt(i) == B.charAt(start)) {
                 start++;
+                result++;
             } else {
                 result++;
             }
