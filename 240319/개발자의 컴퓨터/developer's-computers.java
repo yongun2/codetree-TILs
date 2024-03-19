@@ -7,16 +7,14 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int[] computers = new int[1001];
-
         final int N = Integer.parseInt(br.readLine());
-
+        StringTokenizer st;
         for (int i = 0; i < N; ++i) {
-            int[] inputs = Arrays.stream(br.readLine().split(" "))
-                                .mapToInt(Integer::parseInt)
-                                .toArray();
-            int start = inputs[0];
-            int end = inputs[1];
-            int computer = inputs[2];
+            st = new StringTokenizer(br.readLine(), " ");
+
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            int computer = Integer.parseInt(st.nextToken());
 
             for (int j = start; j <= end; ++j) {
                 computers[j] += computer;
