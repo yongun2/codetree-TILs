@@ -8,7 +8,7 @@ public class Main {
         final int N = Integer.parseInt(br.readLine());
 
         StringTokenizer st;
-        final int[][] area = new int[91][91];
+        final int[][] area = new int[101][101];
         for (int i = 0; i < N; ++i) {
             st = new StringTokenizer(br.readLine(), " ");
             int x = Integer.parseInt(st.nextToken());
