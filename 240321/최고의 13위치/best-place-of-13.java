@@ -17,15 +17,20 @@ public class Main {
             }
         }
 
-        int result = 0;
-        for (int i = 0; i < 3; ++i) {
-            result += grid[0][i];
-        }
-
+        
+        int result = Integer.MIN_VALUE;
+        int rowMaxSum = 0;
         for (int i = 0; i < grid.length; ++i) {
-            for (int j = 3; j < grid.length - 3; ++j) {
-                result = Math.max(result, result - grid[i][j - 3] + grid[i][j]);
+            int sum = 0;
+            for (int j = 0; j < 3; ++j) {
+                sum += grid[i][j];
             }
+            rowMaxSum = sum;
+            for (int j = 3; j < grid.length; ++j) {
+                sum = sum - grid[i][j - 3] + grid[i][j];
+                rowMaxSum = Math.max(rowMaxSum, sum);
+            }
+            result = Math.max(result, rowMaxSum);
         }
 
         System.out.println(result);
