@@ -7,24 +7,20 @@ public class Main {
 
         final int N = Integer.parseInt(br.readLine());
 
-        int[] inputs = new int[N];
+        int[] houses = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         for (int i = 0; i < N; ++i) {
-            inputs[i] = Integer.parseInt(st.nextToken());
+            houses[i] = Integer.parseInt(st.nextToken());
         }
         
-        int result = Integer.MIN_VALUE;
+        int result = Integer.MAX_VALUE;
         for (int i = 0; i < N; ++i) {
-            inputs[i] *= 2;
-            int diff = 0;
-            for (int j = 0; j < N - 1; ++j) {
-                diff += Math.abs(inputs[j+1] - inputs[j]);
+            int distance = 0;
+            for (int j = 0; j < N; ++j){
+                distance += (houses[j] * Math.abs(i - j));
             }
-            result = Math.max(result, diff);
-            inputs[i] /= 2;
+            result = Math.min(result, distance);
         }
-
-        
 
         System.out.println(result);
     }
