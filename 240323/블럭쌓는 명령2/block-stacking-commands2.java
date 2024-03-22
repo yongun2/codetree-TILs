@@ -9,7 +9,7 @@ public class Main {
         final int N = Integer.parseInt(st.nextToken());
         final int K = Integer.parseInt(st.nextToken());
 
-        int[] blocks = new int[N];
+        int[] blocks = new int[N + 1];
         int[][] query = new int[K][2];
         for (int i = 0; i < K; ++i) {
             st = new StringTokenizer(br.readLine(), " ");
