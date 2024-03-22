@@ -23,28 +23,20 @@ public class Main {
             }
         }
 
-        trace(0, 0, 0);
+        for(int i = 1; i < R; i++)
+            for(int j = 1; j < C; j++)
+                for(int k = i + 1; k < R - 1; k++)
+                    for(int l = j + 1; l < C - 1; l++)
+                        // 그 중 색깔이 전부 달라지는 경우에만 개수를 세줍니다.
+                        if(grid[0][0] != grid[i][j] && 
+                           grid[i][j] != grid[k][l] &&
+                           grid[k][l] != grid[R - 1][C - 1])
+                            result++;
 
         System.out.println(result);
 
 
     }
 
-    private static void trace(int y, int x, int step) {
-
-        if (y >= R || x >= C || step >= 4) return;
-
-        if (pos[step] != grid[y][x]) return;
-        
-        if (y == R-1 && x == C-1 && step == 3) {
-            result++;
-            return;
-        }
-
-        for (int i = 1; i < R; ++i) {
-            for (int j = 1; j < C; ++j) {
-                trace(y+i, x+j, step+1);
-            }
-        }
-    }
+   
 }
