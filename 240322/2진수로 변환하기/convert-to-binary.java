@@ -13,7 +13,7 @@ public class Main {
             else result.append("1");
             N /= 2;
         }
-        if (N == 0 || N == 1) System.out.println(0);
+        if (N == 0 || N == 1) System.out.println(N);
         else    System.out.println(result.reverse().toString());
     }
 }
