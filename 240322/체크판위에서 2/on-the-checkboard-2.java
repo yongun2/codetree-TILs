@@ -32,7 +32,7 @@ public class Main {
 
     private static void trace(int y, int x, int step) {
 
-        if (y >= R || x >= C) return;
+        if (y >= R || x >= C || step >= 4) return;
 
         if (pos[step] != grid[y][x]) return;
         
