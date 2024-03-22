@@ -10,8 +10,8 @@ public class Main {
         int result = 0;
         // 존나 개빡코드 O(n^4)
         // stack 사용해서 줄이기
-        for (int i = 0; i < input.length() - 3; ++i) {
-            for (int j = i+1; j < input.length() - 2; ++j) {
+        for (int i = 0; i < input.length() - 1; ++i) {
+            for (int j = i+1; j < input.length() - 1; ++j) {
                 if (input.charAt(i) == '(' && input.charAt(i+1) == '('
                     && input.charAt(j) == ')' && input.charAt(j+1) == ')'
                 ) result++;
