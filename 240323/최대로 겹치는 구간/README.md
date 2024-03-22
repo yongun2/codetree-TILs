@@ -4,6 +4,8 @@
 |---|---|---|
 |[Kakao / 시뮬레이션 / 구간 칠하기](https://www.codetree.ai/missions?missionId=16)|30xp|![보통][medium]|
 
+* key point
+* 배열의 음수 구간이 존재할 경우 offset을 더해 생각하기
 
 
 
