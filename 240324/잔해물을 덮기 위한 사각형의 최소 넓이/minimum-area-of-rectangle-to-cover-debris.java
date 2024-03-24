@@ -36,8 +36,8 @@ public class Main {
                 }
             }
         }
-        int maxX = Integer.MIN_VALUE;
-        int maxY = Integer.MIN_VALUE;
+        int maxX = 0;
+        int maxY = 0;
         for (int i = rectangle[1]; i < rectangle[3]; ++i) {
             for (int j = rectangle[0]; j < rectangle[2]; ++j) {
                 if (area[i][j] != 0) {
@@ -52,6 +52,8 @@ public class Main {
 
         // System.out.printf("maxX = %d maxY = %d\n", maxX, maxY);
 
-        System.out.println((maxY - rectangle[1] + 1) * (maxX - rectangle[0] + 1));
+        if (maxX == 0 || maxY == 0) System.out.println(0);
+        else System.out.println((maxY - rectangle[1] + 1) * (maxX - rectangle[0] + 1));
+        
     }
 }
