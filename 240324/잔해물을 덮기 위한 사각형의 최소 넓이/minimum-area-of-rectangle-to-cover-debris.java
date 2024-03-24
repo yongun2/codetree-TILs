@@ -36,24 +36,25 @@ public class Main {
                 }
             }
         }
-        int maxX = 0;
-        int maxY = 0;
+        int minX = Integer.MAX_VALUE;
+        int minY = Integer.MAX_VALUE;
+        int maxX = Integer.MIN_VALUE;
+        int maxY = Integer.MIN_VALUE;
         for (int i = rectangle[1]; i < rectangle[3]; ++i) {
             for (int j = rectangle[0]; j < rectangle[2]; ++j) {
                 if (area[i][j] != 0) {
                     maxX = Math.max(maxX, j);
                     maxY = Math.max(maxY, i);
+                    minX = Math.min(minX , j);
+                    minY = Math.min(minY , i);
                 }
-                // System.out.printf("%2d ", area[i][j]);
+                // System.out.printf("%d ", area[i][j]);
             }
             // System.out.println();
 
         }
 
-        // System.out.printf("maxX = %d maxY = %d\n", maxX, maxY);
-
-        if (maxX == 0 || maxY == 0) System.out.println(0);
-        else System.out.println((maxY - rectangle[1] + 1) * (maxX - rectangle[0] + 1));
+        System.out.println((maxY - minY + 1) * (maxX - minX + 1));
         
     }
 }
