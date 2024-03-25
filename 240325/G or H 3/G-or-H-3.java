@@ -14,20 +14,20 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             int point = Integer.parseInt(st.nextToken());
             String alpha = st.nextToken();
-            if (alpha.equals('G')) {
+            if (alpha.equals("G")) {
                 line[point] = 1;
             } else {
                 line[point] = 2;
             }
         }
         int sum = 0;
-        for (int i = 0; i < K; ++i) {
+        for (int i = 1; i <= K + 1; ++i) {
             sum += line[i];
         }
 
-        int result = sum - 1;
+        int result = sum;
         for (int i = K; i < line.length; ++i) {
-            sum = sum - line[i-K] + line[i] - 1;
+            sum = sum - line[i-K] + line[i];
             result = Math.max(result, sum);
         }
 
