@@ -53,8 +53,10 @@ public class Main {
             // System.out.println();
 
         }
-        
-        if (maxY - minY == 0 && maxX - minX == 0) System.out.println(0);
+        if (minX == Integer.MAX_VALUE && maxX == Integer.MIN_VALUE
+            && minY == Integer.MAX_VALUE && maxY == Integer.MIN_VALUE) {
+                System.out.println(0);
+        }    
         else System.out.println((maxY - minY + 1) * (maxX - minX + 1));
         
     }
