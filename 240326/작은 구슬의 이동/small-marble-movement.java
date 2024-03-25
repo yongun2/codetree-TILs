@@ -28,10 +28,10 @@ public class Main {
                 curDirection = 1;
                 break;
             case 'D':
-                curDirection = 2;
+                curDirection = 0;
                 break;
             case 'U':
-                curDirection = 0;
+                curDirection = 2;
                 break; 
             default:
                 curDirection = -1;
@@ -52,10 +52,12 @@ public class Main {
                 curX -= x;
                 curY -= y;
                 curDirection = (curDirection + 2) % 4;
+            
                 continue;
             }
+            
         }
-       
+      
         System.out.printf("%d %d\n", curY, curX);
     }
 
