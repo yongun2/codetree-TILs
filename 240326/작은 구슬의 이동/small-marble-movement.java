@@ -20,26 +20,37 @@ public class Main {
         int[] dy = new int[] {1, 0, -1, 0};
         int curDirection;
 
-        if (direction == 'L') {
-            curDirection = 3;
-        } else {
-            curDirection = 1;
+        switch(direction) {
+            case 'L':
+                curDirection = 3;
+                break;
+            case 'R':
+                curDirection = 1;
+                break;
+            case 'D':
+                curDirection = 2;
+                break;
+            case 'U':
+                curDirection = 0;
+                break; 
+            default:
+                curDirection = -1;
+                break;
         }
+        
 
         for (int i = 0; i <= T; ++i) {
             int x = dx[curDirection];
             int y = dy[curDirection];
-
-            if (inRange(curX + x, curY + y, N)) {
-                curX += x;
-                curY += y;
-            } 
-            // 벽 넘어간 경우
-            else {
+            
+            if (!inRange(curX, curY, N)) {
                 curX -= x;
                 curY -= y;
                 curDirection = (curDirection + 2) % 4;
+                continue;
             }
+            curX += x;
+            curY += y;  
             
         }
        
