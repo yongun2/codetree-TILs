@@ -21,13 +21,13 @@ public class Main {
             }
         }
         int sum = 0;
-        for (int i = 1; i <= K + 1; ++i) {
+        for (int i = 0; i <= K; ++i) {
             sum += line[i];
         }
 
         int result = sum;
-        for (int i = K; i < line.length; ++i) {
-            sum = sum - line[i-K] + line[i];
+        for (int i = K + 1; i < line.length; ++i) {
+            sum = sum - line[i - (K + 1)] + line[i];
             result = Math.max(result, sum);
         }
 
