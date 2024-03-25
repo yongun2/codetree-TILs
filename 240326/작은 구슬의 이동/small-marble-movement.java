@@ -9,7 +9,7 @@ public class Main {
         final int N = Integer.parseInt(st.nextToken());
         final int T = Integer.parseInt(st.nextToken());
 
-        int[][] grid = new int[N][N];
+        int[][] grid = new int[N+1][N+1];
 
         st = new StringTokenizer(br.readLine(), " ");
         int curY = Integer.parseInt(st.nextToken());
@@ -39,25 +39,27 @@ public class Main {
         }
         
 
-        for (int i = 0; i <= T; ++i) {
+        for (int i = 0; i < T; ++i) {
+            
             int x = dx[curDirection];
             int y = dy[curDirection];
-            
+
+            curX += x;
+            curY += y;
+
             if (!inRange(curX, curY, N)) {
+                // 방향 전환
                 curX -= x;
                 curY -= y;
                 curDirection = (curDirection + 2) % 4;
                 continue;
             }
-            curX += x;
-            curY += y;  
-            
         }
        
         System.out.printf("%d %d\n", curY, curX);
     }
 
     private static boolean inRange(int x, int y, int N) {
-        return x >= 0 && x < N && y >= 0 && y < N;
+        return x >= 1 && x <= N && y >= 1 && y <= N;
     }
 }
