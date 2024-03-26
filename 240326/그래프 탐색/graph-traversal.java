@@ -15,15 +15,18 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
+        for (int i = 1; i <= N; ++i) {
+            graph.putIfAbsent(i, new ArrayList<Integer>());
+        }
+
         for (int i = 0; i < M; ++i) {
             st = new StringTokenizer(br.readLine(), " ");
 
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
-            if (!graph.containsKey(x)) {
-                graph.put(x, new ArrayList<Integer>());
-            }
+            
             graph.get(x).add(y);
+            graph.get(y).add(x);
         }
         
         DFS(1);
