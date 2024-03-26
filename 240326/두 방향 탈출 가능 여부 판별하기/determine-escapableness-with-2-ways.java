@@ -7,6 +7,9 @@ public class Main {
     private static boolean[][] visited;
     private static int N, M;
 
+    private static int[] dx = new int[] {0, 1};
+    private static int[] dy = new int[] {1, 0};
+
     private static int result = 0;
 
     public static void main(String[] args) throws IOException {
@@ -43,8 +46,13 @@ public class Main {
         visited[y][x] = true;
         if (x == M - 1 && y == N - 1) result = 1;
 
-        DFS(y+1, x);
-        DFS(y, x+1);
+        for (int i = 0; i < 2; ++i) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            DFS(nx, ny);
+        }
+        
+        
     }
 
     
