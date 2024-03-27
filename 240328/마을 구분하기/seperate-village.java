@@ -9,7 +9,7 @@ public class Main {
 
     public static int villageCount = 0;
     public static int memberCount = 0;
-    public static Set<Integer> members = new HashSet<>(); 
+    public static List<Integer> members = new ArrayList<>(); 
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,9 +36,7 @@ public class Main {
             }
         }
         System.out.println(villageCount);
-        for (Integer count: members) {
-            System.out.println(count);
-        }
+        members.stream().sorted().forEach(System.out::println);
     }
 
     public static boolean DFS(int x, int y) {
