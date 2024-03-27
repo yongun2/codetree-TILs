@@ -47,6 +47,7 @@ public class Main {
                     result = time;
                 }
             }
+            if (result != -1) break;
             
             
         }
