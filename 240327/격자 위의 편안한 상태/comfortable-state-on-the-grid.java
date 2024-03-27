@@ -13,7 +13,7 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        int[][] grid = new int[N][N];
+        int[][] grid = new int[N + 1][N + 1];
 
         int[] dx = new int[] {0, 1, 0, -1};
         int[] dy = new int[] {-1, 0, 1, 0};
