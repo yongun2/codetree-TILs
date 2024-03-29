@@ -34,25 +34,20 @@ public class Main {
     public static void isBeautifulNumber() {
         int startNumber = numbers.get(0);
         int count = 1;
-        
+
         for (int i = 1; i < numbers.size(); ++i) {
             int curNumber = numbers.get(i);
 
             if (curNumber != startNumber) {
-                if (count != startNumber) return;
-                count = 1;
+                if (count % startNumber != 0) return;
                 startNumber = curNumber;
+                count = 1;
             } else {
-                if (startNumber == 1) {
-                    count = 1;
-                } else {
-                    count += 1;
-                    if (count > startNumber) return;
-                }
+                count += 1;
             }
         }
 
-        if (count != startNumber) return;
+        if (count % startNumber != 0) return;
         // System.out.println(numbers.toString());
         result += 1;
     }
