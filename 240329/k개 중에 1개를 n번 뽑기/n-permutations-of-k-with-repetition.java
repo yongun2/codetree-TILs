@@ -23,7 +23,7 @@ public class Main {
             return;
         }
 
-        for (int i = 1; i <= N; ++i) {
+        for (int i = 1; i <= K; ++i) {
             list.add(i);
             choose(n+1);
             list.remove(list.size() - 1);
