@@ -14,7 +14,7 @@ public class Main {
         K = Integer.parseInt(st.nextToken());
         N = Integer.parseInt(st.nextToken());
 
-        choose(1);
+        choose(0);
     }
 
     public static void choose(int n) {
