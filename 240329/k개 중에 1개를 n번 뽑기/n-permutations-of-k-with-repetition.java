@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void choose(int n) {
-        if (n == N + 1) {
+        if (n == N) {
             print();
             return;
         }
