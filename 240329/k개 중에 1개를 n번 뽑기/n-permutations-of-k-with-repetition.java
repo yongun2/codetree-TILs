@@ -31,8 +31,8 @@ public class Main {
     }
 
     public static void print() {
-        for (Integer number: list) {
-            System.out.printf("%d ", number);
+        for (int i = 0; i < list.size(); ++i) {
+            System.out.printf("%d ", list.get(i));
         }
         System.out.println();
     }
