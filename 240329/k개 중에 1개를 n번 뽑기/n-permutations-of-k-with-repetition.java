@@ -32,7 +32,7 @@ public class Main {
 
     public static void print() {
         for (int i = 0; i < list.size(); ++i) {
-            System.out.printf("%d ", list.get(i));
+            System.out.print(list.get(i) + " ");
         }
         System.out.println();
     }
