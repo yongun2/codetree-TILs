@@ -26,19 +26,20 @@ public class Main {
         for (int num: array) {
             int need = K - num;
             if (!map.containsKey(need)) continue;
-            
-            if (map.get(num) == 0 && map.get(need) == 0) continue;
-            if (num == need) {
-                int count = map.get(need);
-                result += (count * (count -1)) / 2;
-                map.put(num, 0);
-            } else {
-                result += 1;
+
+            if (map.get(num) == 0 || map.get(need) == 0) continue;
+
+            if (need == num) {
+                int count = map.get(num);
+                result += count - 1;
+                map.put(need, count - 1);
+            } else if(map.containsKey(need)) {
+                result += map.get(need) * map.get(num);
                 map.put(num, map.get(num) - 1);
-                map.put(need, map.get(need) - 1);
             }
+            
         }
-    
+        // 
         System.out.println(result);
     }
 
