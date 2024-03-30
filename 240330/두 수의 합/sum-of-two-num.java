@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Main {
     public static int N, K;
-    public static int[] array;
-    public static Map<Integer, Integer> map = new HashMap<>();
+    public static long[] array;
+    public static Map<Long, Integer> map = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -13,33 +13,27 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-        array = new int[N];
+        array = new long[N];
         st = new StringTokenizer(br.readLine(), " ");
         for (int i = 0; i < N; ++i) {
-            int val = Integer.parseInt(st.nextToken());
+            long val = Long.parseLong(st.nextToken());
             array[i] = val;
-            map.put(val, map.getOrDefault(val, 0) + 1);
         }
 
-    
         int result = 0;
-        for (int num: array) {
-            int need = K - num;
-            if (!map.containsKey(need)) continue;
-
-            if (map.get(num) == 0 || map.get(need) == 0) continue;
-
-            if (need == num) {
-                int count = map.get(num);
-                result += count - 1;
-                map.put(need, count - 1);
-            } else if(map.containsKey(need)) {
-                result += map.get(need) * map.get(num);
-                map.put(num, map.get(num) - 1);
+        for (long num: array) {
+            long diff = K - num;
+            if (map.containsKey(diff)) {
+                result += map.get(diff);
             }
-            
+
+            if (!map.containsKey(num)) {
+                map.put(num, 1);
+            } else {
+                map.put(num, map.get(num) + 1);
+            }
         }
-        // 
+
         System.out.println(result);
     }
 
