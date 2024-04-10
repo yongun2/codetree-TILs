@@ -15,6 +15,7 @@ public class Main {
     private static int N;
     private static int[] choices;
     private static int result = 1;
+    private static int[] lookup = new int[1001];
     private static List<Pair> lines = new ArrayList<>();
     private static Set<Integer> current = new HashSet<>();
     
@@ -63,23 +64,30 @@ public class Main {
     }
 
     private static void result() {
-        int[] line = new int[1001];
-        // int[] line = new int[12];
-        
+    
         int count = 0;
         for (int choice: choices) {
             if (choice == 0) continue;
             count += 1;
             Pair pair = lines.get(choice - 1);
             for (int i = pair.start; i <= pair.end; ++i) {
-                line[i] += 1;
+                lookup[i] += 1;
             }
         }
     
-        for (int i = 0; i < line.length; ++i) {
-            if (line[i] >= 2) return;
+        for (int i = 0; i < lookup.length; ++i) {
+            if (lookup[i] >= 2) {
+                resetLookup();
+                return;
+            }
         }
-
+        resetLookup();
         result = Math.max(result, count);
-    }   
+    }  
+
+    private static void resetLookup() {
+        for (int i = 0; i < 1001; ++i) {
+            lookup[i] = 0;
+        }
+    }
 }
