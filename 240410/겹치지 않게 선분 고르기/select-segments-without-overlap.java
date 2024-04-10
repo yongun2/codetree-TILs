@@ -68,16 +68,15 @@ public class Main {
         int count = 0;
         for (int i = 0; i < choices.length; ++i) {
             if (choices[i] == 0) continue;
-            count += 1;
-            Pair pair = lines.get(i);
-            for (int j = pair.start; j <= pair.end; ++j) {
-                lookup[j] += 1;
+            Pair x = lines.get(i);
+            for (int j = i + 1; j < choices.length; ++j) {
+                Pair y = lines.get(j);
+                if ((x.start <= y.start && y.start <= x.end) || (x.start <= y.end && y.end <= x.end) ||
+                    (y.start <= x.start && x.start <= y.end) || (y.start <= x.end && x.end <= y.end)) return;
             }
+            count += 1;
         }
-    
-        for (int i = 0; i < lookup.length; ++i) {
-            if (lookup[i] >= 2) return;
-        }
+        // System.out.println(Arrays.toString(choices));
         result = Math.max(result, count);
     }  
 
