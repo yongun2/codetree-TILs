@@ -70,6 +70,7 @@ public class Main {
             if (choices[i] == 0) continue;
             Pair x = lines.get(i);
             for (int j = i + 1; j < choices.length; ++j) {
+                if (choices[j] == 0) continue;
                 Pair y = lines.get(j);
                 if ((x.start <= y.start && y.start <= x.end) || (x.start <= y.end && y.end <= x.end) ||
                     (y.start <= x.start && x.start <= y.end) || (y.start <= x.end && x.end <= y.end)) return;
