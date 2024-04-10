@@ -15,7 +15,7 @@ public class Main {
     private static int N;
     private static int[] choices;
     private static int result = 1;
-    private static int[] lookup = new int[1001];
+    // private static int[] lookup = new int[1001];
     private static List<Pair> lines = new ArrayList<>();
     private static Set<Integer> current = new HashSet<>();
     
@@ -37,57 +37,49 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             lines.add(new Pair(Integer.parseInt(st.nextToken()),
                                  Integer.parseInt(st.nextToken())
-                                 )
+                                )
                         );
         }
-        for (int i = 2; i <= N; ++i) {
-            choose(0, i);
-        }
+        choose(0);
+        // for (int i = 2; i <= N; ++i) {
+        //     choose(0, i);
+        // }
         
         System.out.println(result);
     }
 
-    private static void choose(int index, int choiceCount) {
-        if (index >= choiceCount) {
+    private static void choose(int index) {
+        if (index >= N) {
             // System.out.println(Arrays.toString(choices));
             result();
             return;
         }
 
-        for (int i = 1; i <= N; ++i) {
-            if (current.contains(i)) continue;
-            current.add(i);
-            choices[index] = i;
-            choose(index + 1, choiceCount);
-            current.remove(choices[index]);
-        }
+        choices[index] = 0;
+        choose(index + 1);
+        
+        choices[index] = 1;
+        choose(index + 1);
+        
     }
 
     private static void result() {
-    
+        int[] lookup = new int[1001];
         int count = 0;
-        for (int choice: choices) {
-            if (choice == 0) continue;
+        for (int i = 0; i < choices.length; ++i) {
+            if (choices[i] == 0) continue;
             count += 1;
-            Pair pair = lines.get(choice - 1);
-            for (int i = pair.start; i <= pair.end; ++i) {
-                lookup[i] += 1;
+            Pair pair = lines.get(i);
+            for (int j = pair.start; j <= pair.end; ++j) {
+                lookup[j] += 1;
             }
         }
     
         for (int i = 0; i < lookup.length; ++i) {
-            if (lookup[i] >= 2) {
-                resetLookup();
-                return;
-            }
+            if (lookup[i] >= 2) return;
         }
-        resetLookup();
         result = Math.max(result, count);
     }  
 
-    private static void resetLookup() {
-        for (int i = 0; i < 1001; ++i) {
-            lookup[i] = 0;
-        }
-    }
+    
 }
