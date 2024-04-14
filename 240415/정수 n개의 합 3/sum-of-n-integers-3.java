@@ -28,7 +28,7 @@ public class Main {
         int result = Integer.MIN_VALUE;
         for (int i = K; i <= N; ++i) {
             for (int j = K; j <= N; ++j) {
-                result = Math.max(result, grid[i][j] - grid[i][j-1] - grid[i-1][j] + grid[i-1][j-1]);
+                result = Math.max(result, grid[i][j] - grid[i][j-K] - grid[i-K][j] + grid[i-K][j-K]);
             }
         }
         System.out.println(result);
