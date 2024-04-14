@@ -22,11 +22,8 @@ public class Main {
             sums[i] = sum;
         }
         int result = Integer.MIN_VALUE;
-        for (int i = 2; i < sums.length; ++i) {
-            if (i == 2) result = sums[i];
-            else {
-                result = Math.max(result, sums[i] - sums[i-2]);
-            }
+        for (int i = K; i < sums.length; ++i) {
+            result = Math.max(result, sums[i] - sums[i - K]);
         }
 
         System.out.println(result);
