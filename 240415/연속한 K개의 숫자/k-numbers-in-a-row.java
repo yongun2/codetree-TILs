@@ -29,12 +29,10 @@ public class Main {
         }
 
         int result = Integer.MAX_VALUE;
-        for (int i = B; i <= N; ++i) {
-            result = Math.min(result, B - (prefixSum[i] - prefixSum[i - B]));
+        for (int i = K; i <= N; ++i) {
+            result = Math.min(result, K - (prefixSum[i] - prefixSum[i - K]));
         }
 
         System.out.println(result);
-
-   
     }
 }
