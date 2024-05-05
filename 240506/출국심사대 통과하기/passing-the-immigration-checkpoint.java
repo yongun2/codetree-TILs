@@ -10,7 +10,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         N = Integer.parseInt(br.readLine());
-        peoples = new People[N];
 
         timeline = new int[15];
 
