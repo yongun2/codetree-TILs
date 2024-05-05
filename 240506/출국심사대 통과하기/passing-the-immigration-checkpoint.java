@@ -11,7 +11,7 @@ public class Main {
 
         N = Integer.parseInt(br.readLine());
 
-        timeline = new int[15];
+        timeline = new int[1_000_001];
 
         StringTokenizer st;
         for (int i = 0; i < N; ++i){
