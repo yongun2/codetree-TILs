@@ -38,6 +38,7 @@ public class Main {
                     count = 0;
                 }
             }
+            result = Math.max(result, count + 1);
         }
 
         System.out.println(result == Integer.MIN_VALUE ? 0 : result);
