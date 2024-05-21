@@ -16,7 +16,7 @@ public class Main {
         }
 
         arrays = arrays.stream()
-                .sorted(Comparator.comparing(String::length))
+                .sorted(Comparator.comparing(String::length).thenComparing(String::compareTo))
                 .collect(Collectors.toList());
 
         arrays.forEach(System.out::println);
