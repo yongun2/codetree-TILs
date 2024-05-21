@@ -23,7 +23,7 @@ public class Main {
             array[i] = Integer.parseInt(st.nextToken());
         }
 
-        array = Arrays.sort(array);
+        Arrays.sort(array);
 
         for (int i = 0; i < array.length; ++i) {
             System.out.print(array[i] + " ");
