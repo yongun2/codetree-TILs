@@ -36,7 +36,7 @@ public class Main {
 
         if (isPerfectSequences(lookup)) {
             K++;
-            kIndex.add(0);
+            kIndex.add(1);
         }
 
         for (int i = M; i < N; ++i) {
