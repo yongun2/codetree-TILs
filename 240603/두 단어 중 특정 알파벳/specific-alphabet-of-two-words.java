@@ -1,44 +1,62 @@
 import java.io.*;
 import java.util.*;
 
-
 public class Main {
-    private static Map<Character, Integer> result = new HashMap<>();
+
     private static int N;
 
+    private static Map<Character, Integer> strA = new HashMap<>();
+    private static Map<Character, Integer> strB = new HashMap<>();
+    private static Map<Character, Integer> result = new HashMap<>();
+
     public static void main(String[] args) throws IOException {
+        // 여기에 코드를 작성해주세요.
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         N = Integer.parseInt(br.readLine());
 
-        for (char i = 97; i <= 122; ++i) {
+        for (char i = 97; i < 123; ++i) {
             result.put(i, 0);
         }
 
         StringTokenizer st;
-        Set<Character> lookup = new HashSet<>();
         for (int i = 0; i < N; ++i) {
-            st = new StringTokenizer(br.readLine(), " ");
-            
-            for (int j = 0; j < 2; ++j) {
-                String str = st.nextToken();
-                for (int k = 0; k < str.length(); ++k) {
-                    char value = str.charAt(k);
-                    if (lookup.contains(value)) {
-                        continue;
-                    } 
+            st = new StringTokenizer(br.readLine());
 
-                    lookup.add(value);
-                    result.put(value, result.get(value) + 1);
+            String str = st.nextToken();
+            for (int j = 0; j < str.length(); ++j) {
+                Character value = str.charAt(j);
+                strA.put(value, strA.getOrDefault(value, 0) + 1);
+            }
+
+            str = st.nextToken();
+            for (int j = 0; j < str.length(); ++j) {
+                Character value = str.charAt(j);
+                strB.put(value, strB.getOrDefault(value, 0) + 1);
+            }
+
+            for (Character c: strA.keySet()) {
+                if (strB.containsKey(c)) {
+                    result.put(c, result.get(c) + Math.max(strA.get(c), strB.get(c)));
+                } else {
+                    result.put(c, result.get(c) + strA.get(c));
                 }
             }
-            lookup.clear();
-            
+
+            for (Character c: strB.keySet()) {
+                if (strA.containsKey(c)) {
+                    continue;
+                } else {
+                    result.put(c, result.get(c) + strB.get(c));
+                }
+            }
+            strA.clear();
+            strB.clear();
         }
-        for (char i = 97; i <= 122; ++i) {
+
+        for (char i = 97; i < 123; ++i) {
             System.out.println(result.get(i));
         }
-        
-        
-        
     }
 }
