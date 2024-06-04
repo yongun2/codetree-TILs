@@ -28,10 +28,20 @@ public class Main {
             graph.get(base).add(target);
             graph.get(target).add(base);
             
+        }   
+
+        if (!graph.containsKey(1)){
+             bw.write(String.valueOf(0));
+             bw.flush();
+             bw.close();
+             return;
         }
         
         dfs(1);
-        System.out.println(result);
+        bw.write(result == - 1 ? "0" : String.valueOf(result));
+        bw.flush();
+        bw.close();
+        
 
     }
 
@@ -44,8 +54,15 @@ public class Main {
         visited.add(start);
         result += 1;
 
-        for (Integer neighbor: graph.get(start)) {
-            dfs(neighbor);
+        List<Integer> neighbors = graph.get(start);
+        
+        if (neighbors.size() == 0) {
+            return;
         }
+
+        for (int i = 0; i < neighbors.size(); ++i) {
+            dfs(neighbors.get(i));
+        }
+        
     }
 }
