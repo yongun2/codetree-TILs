@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 
+
 public class Main {
 
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,7 +25,13 @@ public class Main {
             int target = Integer.parseInt(st.nextToken());
 
             graph.putIfAbsent(base, new ArrayList<Integer>());
+            graph.putIfAbsent(target, new ArrayList<Integer>());
             graph.get(base).add(target);
+            graph.get(target).add(base);
+        }
+
+        for (Integer key: graph.keySet()) {
+            Collections.sort(graph.get(key));
         }
 
         dfs(START);
@@ -45,8 +52,6 @@ public class Main {
         bw.write(String.valueOf(start) + " ");
         visited.add(start);
 
-        if (!graph.containsKey(start)) return;
-
         for (Integer neighbor: graph.get(start)) {
             dfs(neighbor);
         }
@@ -62,7 +67,6 @@ public class Main {
 
             int next = queue.poll();
             bw.write(String.valueOf(next) + " ");
-            if (!graph.containsKey(next)) continue;
 
             for (Integer neighbor: graph.get(next)) {
                 if (!visited.contains(neighbor)) {
