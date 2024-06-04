@@ -55,12 +55,18 @@ public class Main {
             graph.get(base).add(target);
         }
 
+        // System.out.println(graph);
+
         for (Integer i: graph.keySet()) {
             start = i;
             depth = 0;
             dfs(i);
             visited.clear();
+
+            result.add(new Node(start, depth));
         }
+
+        // System.out.println(result);
         
         int maxValue = result.stream()
                                 .mapToInt(Node::getDepth)
@@ -70,6 +76,7 @@ public class Main {
                             .filter(node -> node.depth == maxValue)
                             .sorted(Comparator.comparing(Node::getNodeNum))
                             .collect(Collectors.toList());
+        
         
 
         for (Node node: result) {
@@ -93,11 +100,7 @@ public class Main {
 
         List<Integer> neighbors = graph.get(cur);
 
-        if (neighbors.size() == 0) {
-            result.add(new Node(start, depth));
-            return;
-        }
-        
+    
         for (int i = 0; i < neighbors.size(); ++i) {
             int next = neighbors.get(i);
             dfs(next);
