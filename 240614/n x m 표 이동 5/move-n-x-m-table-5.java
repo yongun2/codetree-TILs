@@ -38,7 +38,7 @@ public class Main {
         //     System.out.println(Arrays.toString(grid[i]));
         // }
 
-        bw.write(String.valueOf(grid[N-1][M-1]));
+        bw.write(String.valueOf(grid[N-1][M-1] == 1 ? 0 : grid[N-1][M-1]));
         bw.flush();
         bw.close();
         
