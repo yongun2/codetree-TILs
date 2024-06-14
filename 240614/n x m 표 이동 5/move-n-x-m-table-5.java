@@ -5,6 +5,7 @@ public class Main {
 
     private static int N,M;
     private static int[][] grid;
+    private static boolean[][] visited;
 
     private static class Pos {
         public int x;
@@ -25,6 +26,7 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
 
         grid = new int[N][M];
+        visited = new boolean[N][M];
         for (int i = 0; i < N; ++i) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; ++j) {
@@ -46,23 +48,27 @@ public class Main {
 
     private static void bfs() {
         Deque<Pos> queue = new ArrayDeque();
+        
         queue.add(new Pos(0, 0));
+        visited[0][0] = true;
 
         int[] dy = {-1, 0, 1, 0};
         int[] dx = {0, 1, 0, -1};
 
-        int movCount = 1;
         while(!queue.isEmpty()) {
             Pos cur = queue.poll();
-            ++movCount;
             for (int i = 0; i < 4; ++i) {
                 int nx = cur.x + dx[i];
                 int ny = cur.y + dy[i];
 
-                if (canGo(nx, ny)) {
-                    grid[ny][nx] = movCount;
-                    queue.push(new Pos(nx, ny));
+                if (canGo(nx,ny)) {
+                    if (!visited[ny][nx]) {
+                        visited[ny][nx] = true;
+                        grid[ny][nx] = grid[cur.y][cur.x] + 1;
+                        queue.add(new Pos(nx, ny));
+                    }
                 }
+
             }
         }
     }
