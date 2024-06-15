@@ -11,23 +11,16 @@ public class Main {
     private static int startX, startY;
     private static int endX, endY;
 
-    // private static int result = 0;
-
-    private static class Rectangle {
-        public Pos topLeft;
-        public Pos bottomRight;
-        public Rectangle(Pos topLeft, Pos bottomRight) {
-            this.topLeft = topLeft;
-            this.bottomRight = bottomRight;
-        }
-    }
-
     private static class Pos {
         public int x;
         public int y;
         public Pos(int x, int y) {
             this.x = x;
             this.y = y;
+        }
+
+        public String toString() {
+            return "x: " + x + " y: " + y;
         }
     }
 
@@ -77,6 +70,7 @@ public class Main {
 
     private static void bfs() {
         Deque<Pos> queue = new ArrayDeque<>();
+        // Deque<Pos> queue = new ArrayDeque<>();
         Pos start = new Pos(startX, startY);
         queue.add(start);
         visit(startX, startY);
@@ -87,21 +81,21 @@ public class Main {
         while (!queue.isEmpty()) {
             Pos cur = queue.poll();
 
-            if (cur.x == endX && cur.y == endY) {
-                return;
-            }
-
             for (int i = 0; i < 4; ++i) {
                 int nx = cur.x + dx[i];
                 int ny = cur.y + dy[i];
 
-                if (inRange(nx, ny) && canGo(nx, ny)) {
+                if (inRange(nx, ny) && canGo(nx, ny) && !isVisited(nx, ny)) {
                     visit(nx, ny);
                     queue.add(new Pos(nx, ny));
                     grid[ny][nx] = grid[cur.y][cur.x] - 1;
+
+                    if (nx == endX && ny == endY) {
+                        return;
+                    }
                 }
             }
-
+            // System.out.println(queue);
             // for (int i = 0; i < N; ++i) {
             //     System.out.println(Arrays.toString(visited[i]));
             // }
@@ -131,5 +125,19 @@ public class Main {
         }
 
         return true;
+    }
+
+    private static boolean isVisited(int x, int y) {
+
+        boolean result = true;
+        for (int i = y; i <= y + H - 1; ++i) {
+            for (int j = x; j <= x + W - 1; ++j) {
+                if (!visited[i][j]) {
+                    result = false;
+                }
+            }
+        }
+
+        return result;
     }
 }
