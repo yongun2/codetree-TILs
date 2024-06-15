@@ -42,6 +42,7 @@ public class Main {
             }
         }
 
+
         st = new StringTokenizer(br.readLine());
 
         H = Integer.parseInt(st.nextToken());
@@ -53,28 +54,25 @@ public class Main {
         endY = Integer.parseInt(st.nextToken()) - 1;
         endX = Integer.parseInt(st.nextToken()) - 1;
 
+        for (int i = startY; i <= startY + H - 1; ++i) {
+            for (int j = startX; j <= startX + W - 1; ++j) {
+                grid[i][j] = 0;
+            }
+        }
+
         bfs();
 
-        // for (int i = 0; i < N; ++i) {
-        //     System.out.println(Arrays.toString(grid[i]));
-        // }
-
-        
-        
         bw.write(String.valueOf(grid[endY][endX] >= 0 ? -1 : Math.abs(grid[endY][endX])));
-
-        
         bw.flush();
         bw.close();
     }
 
     private static void bfs() {
         Deque<Pos> queue = new ArrayDeque<>();
-        // Deque<Pos> queue = new ArrayDeque<>();
         Pos start = new Pos(startX, startY);
         queue.add(start);
         visit(startX, startY);
-        
+
         int[] dy = {-1, 0, 1, 0};
         int[] dx = {0, 1, 0, -1};
 
@@ -95,11 +93,7 @@ public class Main {
                     }
                 }
             }
-            // System.out.println(queue);
-            // for (int i = 0; i < N; ++i) {
-            //     System.out.println(Arrays.toString(visited[i]));
-            // }
-            // System.out.println();
+            
         }
     }
 
