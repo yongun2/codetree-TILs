@@ -65,7 +65,10 @@ public class Main {
         // for (int i = 0; i < N; ++i) {
         //     System.out.println(Arrays.toString(grid[i]));
         // }
-        bw.write(String.valueOf(grid[endY][endX] == 0 ? -1 : grid[endY][endX]));
+
+        
+        
+        bw.write(String.valueOf(grid[endY][endX] >= 0 ? -1 : Math.abs(grid[endY][endX])));
 
         
         bw.flush();
@@ -95,7 +98,7 @@ public class Main {
                 if (inRange(nx, ny) && canGo(nx, ny)) {
                     visit(nx, ny);
                     queue.add(new Pos(nx, ny));
-                    grid[ny][nx] = grid[cur.y][cur.x] + 1;
+                    grid[ny][nx] = grid[cur.y][cur.x] - 1;
                 }
             }
 
