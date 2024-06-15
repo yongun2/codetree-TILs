@@ -65,7 +65,7 @@ public class Main {
         // for (int i = 0; i < N; ++i) {
         //     System.out.println(Arrays.toString(grid[i]));
         // }
-        bw.write(String.valueOf(grid[endY][endX]));
+        bw.write(String.valueOf(grid[endY][endX] == 0 ? -1 : grid[endY][endX]));
 
         
         bw.flush();
