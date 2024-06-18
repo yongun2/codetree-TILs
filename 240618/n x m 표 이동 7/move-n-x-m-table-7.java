@@ -51,11 +51,11 @@ public class Main {
         endY = Integer.parseInt(st.nextToken());
         endX = Integer.parseInt(st.nextToken());
 
-        for (int i = startY; i <= startY + H - 1; ++i) {
-            for (int j = startX; j <= startX + W - 1; ++j) {
-                grid[i][j] = 0;
-            }
-        }
+        // for (int i = startY; i <= startY + H - 1; ++i) {
+        //     for (int j = startX; j <= startX + W - 1; ++j) {
+        //         grid[i][j] = 0;
+        //     }
+        // }
 
         bfs();
         // for (int i = 1; i <= N; ++i) {
@@ -106,7 +106,7 @@ public class Main {
                 int nx = dx[i] + cur.x;
                 int ny = dy[i] + cur.y;
 
-                if (inRange(nx, ny) && canGo(nx, ny)) {
+                if (inRange(nx, ny) && canGo(nx, ny, i)) {
                     visited[ny][nx] = true;
                     grid[ny][nx] = grid[cur.y][cur.x] - 1;
                     queue.add(new Pos(nx, ny));
@@ -121,21 +121,37 @@ public class Main {
         
     }
 
-    private static boolean canGo(int x, int y) {
+    private static boolean canGo(int x, int y, int d) {
 
         // 방문한 경우
         if (visited[y][x]) return false;
 
         if (grid[y][x] == 1) return false;
 
-        // x축
-        for (int i = x; i < x + W; ++i) {
-            if (grid[y + H - 1][i] == 1) return false;
+        // 북쪽으로 이동
+        if (d == 0) {
+            for (int i = x; i < x + W; ++i) {
+                if (grid[y][i] == 1) return false;
+            }
+        } else if (d == 1) {
+            // 동쪽으로 이동
+            for (int i = y; i < y + H; ++i) {
+                if (grid[i][x + W - 1] == 1) return false;
+            }
+        } else if (d == 2) {
+            // 남쪽
+            for (int i = x; i < x + W; ++i) {
+                if (grid[y + H - 1][i] == 1) return false;
+            }    
+        } else {
+            // 서쪽   
+            for (int i = y; i < y + H; ++i) {
+                if (grid[i][x] == 1) return false;
+            }
         }
-        // y축
-        for (int i = y; i < y + H; ++i) {
-            if (grid[i][x + W - 1] == 1) return false;
-        }
+        
+        
+        
         return true;
     }
 }
