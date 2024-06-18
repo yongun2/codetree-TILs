@@ -51,27 +51,7 @@ public class Main {
         endY = Integer.parseInt(st.nextToken());
         endX = Integer.parseInt(st.nextToken());
 
-        // for (int i = startY; i <= startY + H - 1; ++i) {
-        //     for (int j = startX; j <= startX + W - 1; ++j) {
-        //         grid[i][j] = 0;
-        //     }
-        // }
-
         bfs();
-        // for (int i = 1; i <= N; ++i) {
-        //     System.out.println(Arrays.toString(visited[i]));
-        // }
-
-        // for (int i = 0; i < N + 2; ++i) {
-        //     System.out.println(Arrays.toString(grid[i]));
-        // }
-
-        // for (int i = 0; i < N + 2; ++i) {
-        //     for (int j = 0; j < M + 2; ++j) {
-        //         System.out.printf("%d ", visited[i][j] == true ? -1 : 0);
-        //     }
-        //     System.out.println();
-        // }
 
         String result = null;
         if (grid[endY][endX] == 1) {
@@ -125,8 +105,6 @@ public class Main {
 
         // 방문한 경우
         if (visited[y][x]) return false;
-
-        if (grid[y][x] == 1) return false;
 
         // 북쪽으로 이동
         if (d == 0) {
