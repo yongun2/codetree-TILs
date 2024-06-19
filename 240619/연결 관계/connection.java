@@ -37,9 +37,10 @@ public class Main {
             graph.get(base).add(target);
             graph.get(target).add(base);
         }
+        // System.out.println(graph);
 
         for (Integer start: graph.keySet()) {
-            bfs(start);
+            dfs(start, 1);
             // System.out.println();
         }
         bw.write(String.valueOf(result));
@@ -47,32 +48,19 @@ public class Main {
         bw.close();
     }
 
-    private static void bfs(int start) {
-        Deque<Node> queue = new ArrayDeque<>();
-        Set<Integer> visited = new HashSet<>();
-
-        queue.add(new Node(start, 0));
-        visited.add(start);
-
-        while(!queue.isEmpty()) {
-            Node cur = queue.poll();
-
-            // System.out.printf("%d %d\n", cur.num, cur.depth);
-
-            List<Integer> neighbors = graph.get(cur.num);
-            if (cur.depth == 3 && neighbors.size() != 0) {
-                result =1;
-                return;
-            }
-
-            for (int i = 0; i < neighbors.size(); ++i) {
-                int neighbor = neighbors.get(i);
-                if(!visited.contains(neighbor)) {
-                    queue.add(new Node(neighbor, cur.depth + 1));
-                    visited.add(neighbor);
-                }
-            }
+    private static void dfs(int start, int depth) {
+        if (visited.contains(start)) {
+            return;
         }
-        
+
+        if (depth == 5) {
+            result = 1;
+            return;
+        }
+
+        visited.add(start);
+        for (int neighbor: graph.get(start)) {
+            dfs(neighbor, depth + 1);
+        }
     }
 }
