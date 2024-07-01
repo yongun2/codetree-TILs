@@ -6,7 +6,7 @@ public class Main {
     private static int N;
     private static int[][] grid = new int[2000][2000];
 
-    private static int result = -1;
+    private static List<Integer> results = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,16 +50,19 @@ public class Main {
                 int nx = x + dx;
                 int ny = y + dy;
                 if (grid[ny][nx] != 0) {
-                    if (result == -1) {
-                        result = grid[y][x] + 1;
-                    } else {
-                        result = Math.abs(result - (grid[y][x] + 1));
-                    }
+                    results.add(grid[y][x] + 1);
                 }
                 grid[ny][nx] = grid[y][x] + 1;
                 x = nx;
                 y = ny;
             }
+        }
+        // System.out.println(results);
+        
+        if (results.size() < 2) {
+            bw.write(String.valueOf(-1));
+        } else {
+            bw.write(String.valueOf(Math.abs(results.get(0) - results.get(1)) + 1));
         }
 
         // for (int i = 990; i < 1020; ++i) {
@@ -69,8 +72,6 @@ public class Main {
         //     System.out.println();
         // }
         
-
-        bw.write(String.valueOf(result + 1));
         bw.flush();
         bw.close();
     }
