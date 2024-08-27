@@ -22,7 +22,7 @@ public class Main {
         }
 
         int max = Integer.MIN_VALUE;
-        for (int i = 1; i < N - M; ++i) {
+        for (int i = 1; i <= N - M + 1; ++i) {
             max = Math.max(max, inputs[i + M - 1] - inputs[i - 1]);
         }
         int count = 0;
