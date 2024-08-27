@@ -32,8 +32,9 @@ public class Main {
             }
         }
 
+        System.out.println(max);
         if (max != 0) {
-            System.out.println(max);
+            
             System.out.println(count);
         }
         
